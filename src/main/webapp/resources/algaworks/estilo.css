@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+body {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	font-weight: normal
+}
+
+header {
+	padding: 5px;
+	margin-bottom: 20px;
+	background-color: #1769aa;
+	height: auto;
+	color: #fff;
+	box-shadow: 0px 2px 2px #ccc;
+	color: #fff;
+}
+
+#conteudo {
+	padding: 0px 20px
+}
+
+footer {
+	padding: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px
+}
+
+.footer-layout {
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	height: 50px;
+	background-color: #1769A5;
+	color: white;
+	font-weight: 500;
+	font-family: system-ui;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: 500;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 10px
+}
+
+.flex-row-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+}
+
+.title-table {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #696969;
+}
+
+.title-header {
+	font-size: 1.8em;
+	font-weight: bold;
+	color: #696969;
+}
+
+.mr-2 {
+	margin-right: 0.5rem !important;
+}
+
+.align-left {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-content: flex-start;
+}
+
+.height-60 {
+	height: 60px;
+}
+
+.height-40 {
+	height: 40px;
+}

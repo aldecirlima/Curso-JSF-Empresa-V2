@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="WEB-INF/templates/Layout.xhtml">
+
+
+	<ui:define name="titulo">Cadastro de empresas</ui:define>
+	<ui:define name="conteudo">
+		<f:metadata>
+			<f:viewAction action="#{gestaoEmpresasBean.todasEmpresas}" />
+		</f:metadata>
+		<p:tooltip position="top" autoHide="true" />
+		<h:form id="frm">
+
+			<p:messages id="messages" closable="false" />
+
+			<p:menubar id="menuBar">
+				<p:menuitem>
+					<div class="ui-input-icon-left mr-2">
+						<i class="pi pi-fw pi-search" /> <span class="ui-float-label">
+							<p:inputText value="#{gestaoEmpresasBean.termoPesquisa}"
+								id="termoPesquisa" /> <p:outputLabel for="@previous"
+								value="Nome da empresa" />
+						</span>
+					</div>
+					<p:commandButton value="Pesquisar" styleClass="ui-button-info"
+						actionListener="#{gestaoEmpresasBean.pesquisar}"
+						process="@this termoPesquisa" update="messages, empresasDataTable"
+						title="Pesquisar empresas" />
+				</p:menuitem>
+				<p:divider layout="vertical" />
+				<p:menuitem value="Nova empresa" icon="pi pi-plus" id="novaEmpresa"
+					title="Cadastrar nova empresa" process="@this"
+					update="dialogInclude,messages"
+					actionListener="#{gestaoEmpresasBean.prepararNovaEmpresa}"
+					oncomplete="PF('empresaDialogWidgetVar').show()">
+					<p:resetInput target="empresaDialog" />
+				</p:menuitem>
+
+				<p:divider layout="vertical" />
+
+				<p:menuitem value="Editar" icon="pi pi-pencil" id="editar"
+					actionListener="#{gestaoEmpresasBean.prepararEdicao}"
+					oncomplete="PF('empresaDialogWidgetVar').show()"
+					title="Editar empresa" process="@this"
+					update="dialogInclude,messages"
+					disabled="#{not gestaoEmpresasBean.empresaSelecionada}">
+					<p:resetInput target="empresaDialog" />
+				</p:menuitem>
+
+				<p:menuitem value="Excluir" icon="pi pi-trash" id="excluir"
+					title="Excluir empresa"
+					actionListener="#{gestaoEmpresasBean.excluir}"
+					disabled="#{not gestaoEmpresasBean.empresaSelecionada}"
+					update="messages empresasDataTable menuBar" process="@this">
+					<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+						message="Confirma a exclusão da empresa?" />
+
+				</p:menuitem>
+
+				<p:divider layout="vertical" />
+
+				<p:menuitem value="Exportar" title="Exportar para excel"
+					icon="pi pi-file-excel" id="exportar">
+					<p:dataExporter type="xls" target="empresasDataTable"
+						fileName="empresas" exportHeader="true" />
+				</p:menuitem>
+
+				<p:tooltip for="exportar" position="top" autoHide="false" />
+			</p:menubar>
+
+
+			<p:spacer height="5px" />
+
+			<p:dataTable value="#{gestaoEmpresasBean.listaEmpresas}" rows="10"
+				id="empresasDataTable" stripedRows="true" reflow="true" size="small"
+				emptyMessage="Nenhuma informação a ser exibida..." 
+				stickyTopAt=".layout-topbar" paginatorPosition="bottom"
+				paginator="true" var="empresa" selectionMode="single"
+				selection="#{gestaoEmpresasBean.empresa}" rowKey="#{empresa.id}">
+
+				<p:ajax event="rowSelect" update="frm:menuBar" />
+				<p:ajax event="rowUnselect" update="frm:menuBar" />
+
+				<f:facet name="header" >
+					<div class="flex-row-center">
+						<div class="title-table">Lista de empresas</div>
+					</div>
+				</f:facet>
+
+				<p:column headerText="Razão Social" sortBy="#{empresa.razaoSocial}">
+					<p:outputLabel value="#{empresa.razaoSocial}" />
+				</p:column>
+
+				<p:column headerText="Nome Fantasia"
+					sortBy="#{empresa.nomeFantasia}">
+					<p:outputLabel value="#{empresa.nomeFantasia}" />
+				</p:column>
+
+				<p:column headerText="Tipo Empresa" sortBy="#{empresa.tipo}">
+					<p:outputLabel value="#{empresa.tipo}" />
+				</p:column>
+
+				<p:column headerText="Ramo Atividade"
+					sortBy="#{empresa.ramoAtividade.descricao}">
+					<p:outputLabel value="#{empresa.ramoAtividade.descricao}" />
+				</p:column>
+
+			</p:dataTable>
+			<h:panelGroup id="dialogInclude">
+				<ui:include src="WEB-INF/dialogs/DialogNovaEmpresa.xhtml" />
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
