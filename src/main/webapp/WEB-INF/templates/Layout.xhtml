@@ -18,7 +18,7 @@
 </h:head>
 
 <h:body>
-
+	<p:growl id="messages" showDetail="true" />
 	<header>
 		<h:graphicImage library="algaworks" name="logo.png" />
 	</header>
@@ -26,6 +26,7 @@
 	<h2 class="flex-row-center title-header " style="font-size:">
 		<ui:insert name="titulo" />
 	</h2>
+	<p:tooltip position="top" autoHide="true" />
 
 	<div id="conteudo">
 		<ui:insert name="conteudo" />

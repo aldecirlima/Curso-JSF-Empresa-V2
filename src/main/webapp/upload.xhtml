@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="WEB-INF/templates/Layout.xhtml">
+
+
+	<ui:define name="titulo">Upload de arquivos</ui:define>
+
+	<ui:define name="conteudo">
+
+
+		<h:form id="frmUpload">
+
+
+			<p:fileUpload listener="#{uploadBean.upload}" mode="advanced"
+				dragDropSupport="true" multiple="true" auto="false" update="@form"
+				uploadLabel="Carregar" cancelLabel="Cancelar"
+				chooseButtonTitle="Selecione" label="Selecione"
+				fileLimitMessage="Limite 3 arquivos"
+				invalidFileMessage="Tipo de arquivo inválido"
+				invalidSizeMessage="Tamanho limite: 1MB" sizeLimit="1000000"
+				allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+
+			<p:dataList value="#{uploadBean.files}" var="arq" type="ordered" rendered="#{uploadBean.files.size() gt 0}">
+				<f:facet name="header">Arquivos prontos para salvar</f:facet>
+				#{arq.nome}
+			</p:dataList>
+
+			<p:spacer height="5px" />
+			<p:commandButton value="Salvar" ajax="false" rendered="#{uploadBean.files.size() gt 0}"
+				action="#{uploadBean.salveFiles}" />
+				
+			<p:dataList value="#{uploadBean.filesDone}" var="flDone" type="ordered" rendered="#{uploadBean.filesDone.size() gt 0}">
+				<f:facet name="header">Arquivos Salvos</f:facet>
+				#{flDone.nome}
+			</p:dataList>
+
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
