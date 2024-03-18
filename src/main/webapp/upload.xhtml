@@ -22,12 +22,12 @@
 				fileLimitMessage="Limite 3 arquivos"
 				invalidFileMessage="Tipo de arquivo inválido"
 				invalidSizeMessage="Tamanho limite: 1MB" sizeLimit="1000000"
-				allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+				allowTypes="/(\.|\/)(gif|jpe?g|png|webp|pdf)$/" />
 
 
 			<p:dataList value="#{uploadBean.files}" var="arq" type="ordered" rendered="#{uploadBean.files.size() gt 0}">
 				<f:facet name="header">Arquivos prontos para salvar</f:facet>
-				#{arq.nome}
+				#{arq.nomeExibicao}
 			</p:dataList>
 
 			<p:spacer height="5px" />
@@ -36,7 +36,7 @@
 				
 			<p:dataList value="#{uploadBean.filesDone}" var="flDone" type="ordered" rendered="#{uploadBean.filesDone.size() gt 0}">
 				<f:facet name="header">Arquivos Salvos</f:facet>
-				#{flDone.nome}
+				#{flDone.nomeExibicao} - #{flDone.nomeCompleto}
 			</p:dataList>
 
 
