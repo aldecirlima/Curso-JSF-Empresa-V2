@@ -53,6 +53,11 @@ public class EmailDto {
 		this.textEmail = textEmail;
 	}
 
+	public EmailDto setNewSubject(String newSubject) {
+		this.subject = newSubject;
+		return this;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(emailFrom, emailTo, ownerRef, subject, textEmail);

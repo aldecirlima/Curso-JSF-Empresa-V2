@@ -15,15 +15,23 @@
 	<br />
 	<br />
 	<h:form>
-		<p:commandButton value="Requisição Sincrona"  actionListener="#{flashBean.getRequestSincrono()}"/>
+		<p:commandButton value="Requisição Sincrona"  actionListener="#{emailBean.getRequestSincrono}"/>
 		<br />
 		<br />
 		
-		<p:commandButton value="Requisição Assincrona"  actionListener="#{flashBean.getRequestAssincrono()}"/>
+		<p:commandButton value="Requisição Assincrona"  actionListener="#{emailBean.getRequestAssincrono}"/>
 		<br />
 		<br />
 		
-		<p:commandButton value="Post Assincrono"  actionListener="#{flashBean.postRequestSincrono()}"/>
+		<p:commandButton value="Requisição Sincrona e-mail"  actionListener="#{emailBean.getRequestSincronoEmail}"/>
+		<br />
+		<br />
+		
+		<p:commandButton value="Post sincrono"  actionListener="#{emailBean.postRequestSincrono}"/>
+		<br />
+		<br />
+		
+		<p:commandButton value="Post Assincrono"  actionListener="#{emailBean.postAsyncRequest}"/>
 	
 	</h:form>
 
