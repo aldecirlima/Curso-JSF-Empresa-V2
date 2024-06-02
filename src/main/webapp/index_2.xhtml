@@ -7,7 +7,7 @@
 	lang="pt-br">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Minha página inicial</title>
+<title>Minha página inicial Requisição</title>
 </h:head>
 <h:body>
 
@@ -15,14 +15,15 @@
 	<br />
 	<br />
 	<h:form>
-		<p:panelGrid columns="2">
+		<p:commandButton value="Requisição Sincrona"  actionListener="#{flashBean.getRequestSincrono()}"/>
+		<br />
+		<br />
 		
-			<p:outputLabel for="nome" value="Nome" />
-			<p:inputText id="nome" placeholder="Digite seu nome"/>
-			<p:outputLabel for="telefone" value="Telefone" />
-			<p:inputMask id="telefone" value="" mask="(99) 99999-9999" validateMask="true" />
+		<p:commandButton value="Requisição Assincrona"  actionListener="#{flashBean.getRequestAssincrono()}"/>
+		<br />
+		<br />
 		
-		</p:panelGrid>
+		<p:commandButton value="Post Assincrono"  actionListener="#{flashBean.postRequestSincrono()}"/>
 	
 	</h:form>
 
